@@ -1,6 +1,6 @@
 document.querySelector("#isimForm").addEventListener("submit", function (e) 
 {
-    //form değişkenlerini aldığımız bölüm
+    
 
     const ad = document.querySelector("#ad").value;
     const Soyad = document.querySelector("#Soyad").value;
@@ -8,28 +8,28 @@ document.querySelector("#isimForm").addEventListener("submit", function (e)
     const meslek = document.querySelector("#meslek").value;
 
 
-    //isimler fonksiyonu referansı
+   
     const isimlerim = new İsimler(ad, Soyad, yas, meslek);
     const ui = new UI();
 
-    //bosluk kontrolü sağlama
+    
     if (ad == "" || Soyad == "" || yas == "" || meslek == "") {
         ui.uyarilar("Boş alan Bırakmayınız !", "hata");
     } else {
 
-        //İsim eklemeye başla
+        
         ui.isimEkle(isimlerim);
 
-        // Onay mesajı
+        
         ui.uyarilar("Ekleme Başarılı !", "onay");
 
-        //form temizleme
+        
         ui.formTemizle();
     }
     e.preventDefault();
 });
 
-//Consturactor Fonksiyon Nesnesi
+
 function İsimler(ad, Soyad, yas, meslek) {
     this.ad = ad;
     this.Soyad = Soyad;
@@ -37,15 +37,15 @@ function İsimler(ad, Soyad, yas, meslek) {
     this.meslek = meslek;
 }
 
-// UI Fonksiyonu 
+ 
 function UI() { }
 
-//İsim ekleme Prototype
+
 UI.prototype.isimEkle = function (isimlerim) {
-    // liste elementini seçtik
+ 
     const list = document.querySelector(".isimListesi");
 
-    //elementleri oluşturalım 
+   
     const uller = document.createElement("ul");
     uller.innerHTML = `<li>${isimlerim.ad}</li>
  <li>${isimlerim.Soyad}</li><li>${isimlerim.yas}</li>
@@ -56,7 +56,7 @@ UI.prototype.isimEkle = function (isimlerim) {
     list.appendChild(uller);
 }
 
-//form temizleme
+
 UI.prototype.formTemizle = function () {
     document.querySelector("#ad").value = "";
     document.querySelector("#Soyad").value = "";
@@ -65,10 +65,10 @@ UI.prototype.formTemizle = function () {
 }
 
 
-//Uyarılar fonksiyonu 
+ 
 UI.prototype.uyarilar = function (mesaj, classIsmi) {
 
-    // element oluşturma
+    
     const div = document.createElement("div");
     div.className = `uyari ${classIsmi}`;
     const text = document.createTextNode(mesaj);
@@ -77,7 +77,7 @@ UI.prototype.uyarilar = function (mesaj, classIsmi) {
     const form = document.querySelector("#isimForm")
     document.body.insertBefore(div, form);
 
-    // Hata mesajını belli zamandan sonra silme
+   
     setTimeout(() => {
         document.querySelector(".uyari").remove();
     }, 3000);
@@ -98,11 +98,10 @@ function editUserDetails(ad, Soyad, yas, meslek){8
        isimListesiSil(hedef)
      }
 
-// İsimleri Silelim 
+
 document.querySelector(".isimListesi").addEventListener("click",
     function (e) {
 
-        // ui referansını al
         const ui = new UI();
 
         ui.isimListesiSil(e.target);
